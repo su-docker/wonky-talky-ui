@@ -8,6 +8,7 @@ function uuidv4() {
 var rec;
 var server = 'https://707cccd7.ap.ngrok.io/web_connect';
 var client_session_id = uuidv4();
+var recordInProgress = false;
 
 window.onload = function () {
   attachEventListener();
@@ -45,6 +46,7 @@ function attachEventListener() {
 
 function startRecordingHandler() {
   console.log("starting recording");
+  recordInProgress = true;
   u(".r-message").text("Recording...");
   u(".main").addClass("recording");
   startRecording();
@@ -52,6 +54,7 @@ function startRecordingHandler() {
 
 function stopRecordingHandler() {
   console.log("stop recording");
+  recordInProgress = false;
   u(".r-message").text("Press to talk");
   u(".main").removeClass("recording");
   if (rec) {
@@ -80,7 +83,7 @@ function initializeSocket() {
     const evt_data = JSON.parse(evt.data);
     const message = evt_data.message;
     if (message && message.file) {
-      if(message.clientid != client_session_id) {
+      if(message.clientid != client_session_id && !recordInProgress) {
         let player = document.getElementById("player");
         player.src = "data:audio/mp3;base64," + message.file;
         player.play();
