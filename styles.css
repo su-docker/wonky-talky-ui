@@ -26,11 +26,16 @@ h1 {
   cursor: pointer;
 }
 
-.main.recording {
-  background: #c0392b;
-}
-
 .r-message {
   text-align: center;
   height: 50px;
 }
+
+.main.recording {
+  background: #c0392b;
+}
+
+.main.recording h1 {
+  color: white;
+}
+

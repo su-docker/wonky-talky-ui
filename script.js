@@ -63,9 +63,10 @@ function initializeSocket() {
   socket.onmessage = evt => {
     const evt_data = JSON.parse(evt.data);
     const message = evt_data.message;
-    if (message) {
-      console.log("Got message...");
-      console.log(message.file);
+    if (message && message.file) {
+      let player = document.getElementById("player");
+      player.src = "data:audio/mp3;base64," + message.file;
+      player.play();
     }
   }
 
