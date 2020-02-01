@@ -80,9 +80,9 @@ function initializeSocket() {
     const evt_data = JSON.parse(evt.data);
     const message = evt_data.message;
     if (message && message.file) {
-      let player = document.getElementById("player");
-      player.src = "data:audio/mp3;base64," + message.file;
-      if(message.clientid != client_session_id){
+      if(message.clientid != client_session_id) {
+        let player = document.getElementById("player");
+        player.src = "data:audio/mp3;base64," + message.file;
         player.play();
       }
     }
