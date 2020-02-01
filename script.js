@@ -21,6 +21,7 @@ function handleSuccess(stream) {
 function sendDataToBackend(e) {
   var fd = new FormData()
   fd.append('audio', e.data)
+  fd.append('clientid', uuidv4())
   fetch(server, {
     method: 'POST',
     body: fd
@@ -74,4 +75,12 @@ function initializeSocket() {
   socket.onclose = () => {
     console.log('disconnected..');
   }
+}
+
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
 }
