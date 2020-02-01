@@ -63,6 +63,10 @@ function stopRecordingHandler() {
   }
 }
 
+u(".begin").on("click", function () {
+  u('.begin-container').remove()
+})
+
 function subscribe(socket) {
   socket.send(
     JSON.stringify({
@@ -84,7 +88,7 @@ function initializeSocket() {
     const evt_data = JSON.parse(evt.data);
     const message = evt_data.message;
     if (message && message.file) {
-      if(message.clientid != client_session_id && !recordInProgress) {
+      if (message.clientid != client_session_id && !recordInProgress) {
         let player = document.getElementById("player");
         player.src = "data:audio/mp3;base64," + message.file;
         player.play();
