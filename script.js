@@ -36,21 +36,27 @@ function sendDataToBackend(e) {
   })
 }
 
-
 function attachEventListener() {
-  u(".talk").on('mousedown', function () {
-    u(".r-message").text("Recording...");
-    u(".main").addClass("recording");
-    startRecording();
-  })
+  u(".talk").on('mousedown', startRecordingHandler);
+  u(".talk").on('touchstart', startRecordingHandler);
+  u(".talk").on('mouseup', stopRecordingHandler);
+  u(".talk").on('touchend', stopRecordingHandler);
+}
 
-  u(".talk").on('mouseup', function () {
-    u(".r-message").text("Press to talk");
-    u(".main").removeClass("recording");
-    if (rec) {
-      rec.stop();
-    }
-  })
+function startRecordingHandler() {
+  console.log("starting recording");
+  u(".r-message").text("Recording...");
+  u(".main").addClass("recording");
+  startRecording();
+}
+
+function stopRecordingHandler() {
+  console.log("stop recording");
+  u(".r-message").text("Press to talk");
+  u(".main").removeClass("recording");
+  if (rec) {
+    rec.stop();
+  }
 }
 
 function subscribe(socket) {
