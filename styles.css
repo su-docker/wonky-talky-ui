@@ -12,7 +12,7 @@
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 3em;
   text-align: center;
   padding: 40px 0;
 }
@@ -29,6 +29,7 @@ h1 {
 .r-message {
   text-align: center;
   height: 50px;
+  padding-top: 30px;
 }
 
 .main.recording {

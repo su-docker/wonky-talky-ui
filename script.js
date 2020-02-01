@@ -47,6 +47,7 @@ function attachEventListener() {
 function startRecordingHandler() {
   console.log("starting recording");
   recordInProgress = true;
+  setTimeout(stopRecordingHandler, 10000); //Stop automatically after this time
   u(".r-message").text("Recording...");
   u(".main").addClass("recording");
   startRecording();
@@ -55,7 +56,7 @@ function startRecordingHandler() {
 function stopRecordingHandler() {
   console.log("stop recording");
   recordInProgress = false;
-  u(".r-message").text("Press to talk");
+  u(".r-message").text("Press to talk (10 seconds max)");
   u(".main").removeClass("recording");
   if (rec) {
     rec.stop();
