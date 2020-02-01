@@ -1,9 +1,10 @@
+var rec;
+var server = 'https://707cccd7.ap.ngrok.io/web_connect';
+
 window.onload = function () {
   attachEventListener();
   initializeSocket();
 }
-
-var rec;
 
 function startRecording() {
   navigator.mediaDevices
@@ -20,7 +21,7 @@ function handleSuccess(stream) {
 function sendDataToBackend(e) {
   var fd = new FormData()
   fd.append('audio', e.data)
-  fetch('https://707cccd7.ap.ngrok.io/web_connect', {
+  fetch(server, {
     method: 'POST',
     body: fd
   })
