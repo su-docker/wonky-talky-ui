@@ -18,13 +18,19 @@ h1 {
 }
 
 .talk {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background: #c0392b;
+  border: 1px solid white;
   cursor: pointer;
 }
 
-.message {
+.main.recording {
+  background: #c0392b;
+}
+
+.r-message {
   text-align: center;
+  height: 50px;
 }
